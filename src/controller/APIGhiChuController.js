@@ -31,7 +31,7 @@ let createGhiChu = async (req, res) => {
             message: "missing requaired params",
         });
     }
-    await pool.execute("insert into ghichu(title, desc) values (?, ?)", [
+    await pool.execute("INSERT INTO `ghichu`( `title`, `desc`) VALUES (?, ?)", [
         title,
         desc,
     ]);
