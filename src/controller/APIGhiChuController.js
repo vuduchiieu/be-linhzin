@@ -16,7 +16,7 @@ let getGhiChu = async (req, res) => {
         });
     }
     const [rows, fields] = await pool.execute(
-        `select * from users where id = ?`,
+        `select * from ghichu where id = ?`,
         [userId]
     );
     return res.status(200).json({
@@ -31,7 +31,7 @@ let createGhiChu = async (req, res) => {
             message: "missing requaired params",
         });
     }
-    await pool.execute("insert into users(title, desc) values (?, ?)", [
+    await pool.execute("insert into ghichu(title, desc) values (?, ?)", [
         title,
         desc,
     ]);
@@ -47,7 +47,7 @@ let updateGhiChu = async (req, res) => {
             message: "missing requaired params",
         });
     }
-    await pool.execute("update users set title= ?, desc= ? where id = ?", [
+    await pool.execute("update ghichu set title= ?, desc= ? where id = ?", [
         title,
         desc,
         id,
@@ -64,7 +64,7 @@ let deleteGhiChu = async (req, res) => {
             message: "missing requaired params",
         });
     }
-    await pool.execute("delete from users where id = ?", [userId]);
+    await pool.execute("delete from ghichu where id = ?", [userId]);
     return res.status(200).json({
         message: "ok",
     });

@@ -8,7 +8,7 @@ const initAPIGhiChu = (app) => {
     app.use(cors());
     router.get("/ghichus", APIGhiChuController.getAllGhiChu);
     router.get("/ghichu/:id", APIGhiChuController.getAllGhiChu);
-    router.get("/create", APIGhiChuController.createGhiChu);
+    router.post("/create", APIGhiChuController.createGhiChu);
     router.put("/update", APIGhiChuController.updateGhiChu);
     router.delete("/delete/:id", APIGhiChuController.deleteGhiChu);
     return app.use("/api/v1/", router);
