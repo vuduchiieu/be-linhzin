@@ -1,5 +1,5 @@
 import express from "express";
-import initAPILessons from "./route/APILessons";
+import initAPIGhiChu from "./route/APIGhiChu";
 
 require("dotenv").config();
 
@@ -9,7 +9,7 @@ const port = 3001 || process.env.PORT;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-initAPILessons(app);
+initAPIGhiChu(app);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
