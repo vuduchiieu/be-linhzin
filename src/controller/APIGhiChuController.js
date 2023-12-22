@@ -47,11 +47,10 @@ let updateGhiChu = async (req, res) => {
             message: "missing requaired params",
         });
     }
-    await pool.execute("update ghichu set title= ?, desc= ? where id = ?", [
-        title,
-        desc,
-        id,
-    ]);
+    await pool.execute(
+        "update `ghichu` set `title`= ?, `desc`= ? where `id` = ?",
+        [title, desc, id]
+    );
     return res.status(200).json({
         message: "ok",
     });
