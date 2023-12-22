@@ -41,7 +41,7 @@ let createGhiChu = async (req, res) => {
 };
 
 let updateGhiChu = async (req, res) => {
-    let { title, desc } = req.body;
+    let { title, desc, id } = req.body;
     if (!title || !desc) {
         return res.status(200).json({
             message: "missing requaired params",
