@@ -15,6 +15,18 @@ const io = new Server(server, {
     },
 });
 
+io.on("connection", (socket) => {
+    console.log("A user connected");
+    socket.on("deleteGhiChu", ({ index }) => {
+        console.log(`Delete GhiChu at index ${index}`);
+        io.emit("updatedGhiChuList");
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected");
+    });
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
