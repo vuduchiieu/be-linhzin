@@ -1,4 +1,11 @@
 import pool from "../configs/connectDB";
+import { Server } from "socket.io";
+
+let io;
+
+const initSocketIO = (socketIOInstance) => {
+    io = socketIOInstance;
+};
 
 let getAllGhiChu = async (req, res) => {
     const [rows, fields] = await pool.execute("SELECT * FROM `ghichu` ");
@@ -51,6 +58,7 @@ let updateGhiChu = async (req, res) => {
         "update `ghichu` set `title`= ?, `desc`= ? where `id` = ?",
         [title, desc, id]
     );
+    io.emit("updated", { message: "Item updated successfully!" });
     return res.status(200).json({
         message: "ok",
     });
@@ -64,12 +72,14 @@ let deleteGhiChu = async (req, res) => {
         });
     }
     await pool.execute("delete from ghichu where id = ?", [userId]);
+    io.emit("deleted", { message: "Item deleted successfully!" });
     return res.status(200).json({
         message: "ok",
     });
 };
 
-module.exports = {
+export {
+    initSocketIO,
     getAllGhiChu,
     getGhiChu,
     createGhiChu,
